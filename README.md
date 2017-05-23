@@ -38,6 +38,23 @@ If you would like to change defaults for estimation and forecasts, see
     - `distr`: Flag to specify whether to parallelize the forecast procedure.
     - `nMaxWorkers`: Number of workers to use in parallel forecast procedure.
 
+## Troubleshooting
+
+Some common issues that may arise while running with default settings include:
+
+- **Can't load modal parameters:** Check that you're running `Main` in the base
+  (`DSGE-2015-Apr`) directory. Our code uses relative paths throughout,
+  including to specify the location of the mode file (`save/mode_in`), so it
+  won't be found if you're in a subdirectory.
+
+- **Negative diagonal element in Hessian:** Make sure that you're reading in the
+  provided mode file correctly. If you set `reoptimize = 1` and re-ran
+  `csminwel` before computing the Hessian, it's possible that you haven't found
+  a true mode (perhaps because not enough iterations were used).
+
+- Finally, see the section "Final Notes on MATLAB Versions and Toolboxes" below.
+
+
 # Directory Structure
 
 In the main folder, there exist the following directories to house code
